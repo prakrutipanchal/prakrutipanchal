@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Update Post</h2>
+<br/>
+
+{% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>          
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+<br/>     
+
+<h4>Update your title and content!</h4>
+<br/>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+        <br/>
+
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control") }}
+        <br/>
+
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+<br/><br/><br/>
+
+{% endblock %}

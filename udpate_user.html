@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>update data</h2>
+<br/>
+
+{% if email %}
+    email = {{email}} 
+    password = {{password}}
+    username = {{username}}
+{% endif %}
+<br/>
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+ <br/>     
+
+    <h3>What's your email and password?</h3>
+    <br/>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            <br/>
+
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+            <br/>
+
+            {{ form.password_hash.label(class="form-label") }}
+            {{ form.password_hash(class="form-control") }}
+            <br/>
+
+            {{ form.submit(class="btn btn-primary") }}
+
+        </form>
+    </div>
+    <br/><br/><br/>
+
+
+
+{% endblock %}

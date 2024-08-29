@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2> You searched for! </h2>
+<p> {{ searched }}</p>
+<br/>
+	
+    {% for post in get_data %}
+    <div class="shadow p-3 mb-5 bg-body rounded">
+    	<strong>ID:  {{ post.id }}<br/>
+    	Content:  {{ post.content }}<br/>
+    	Issue_time:  {{ post.issue_time }}<br/></strong>
+    </div>
+    {% endfor %}
+
+	
+	<br/><br/>
+	
+{% endblock %}

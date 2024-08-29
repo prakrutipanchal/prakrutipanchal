@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <link href="{{ url_for('static', filename='css/style.css') }}"  rel="stylesheet">
+
+    <title>Hello world</title>
+    <style>
+        .navbar {
+            background-color: black;
+        }
+        .navbar-brand, .nav-link {
+            color: white;
+        }
+        .container{
+          margin-top: 20px;
+        }
+        /* Override link styles for visited links */
+        .nav-link:visited {
+            color: white;
+        }
+        /* Override link styles for active links */
+        .nav-link.active, .nav-link:active {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: white !important;">Flasker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('add_data') }}">Add data</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('add_post') }}">Add post</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('get_post') }}">Get post</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+              </li>
+
+              {% if current_user.id == 4 %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('admin') }}">Admin</a>
+              </li>
+              {% endif %}
+
+
+              
+              {% if current_user.is_authenticated %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+              </li>
+
+              {% else %}
+
+              
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+              </li>
+              {% endif %}
+
+            </ul>
+
+            <form method="POST" action="{{ url_for('search') }}" class="d-flex" role="search">
+              {{ form.hidden_tag() }}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+-->
+
+</body>
+</html>
